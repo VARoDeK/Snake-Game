@@ -94,8 +94,8 @@ class snake
        head = tail = temp;
        head->x = 43;
        head->y = 12;
-       head->direction = 1;
-       head->no_of_blocks = 20;
+       head->direction = 0;
+       head->no_of_blocks = 50;
        head->next == NULL;
        }
 
@@ -117,6 +117,8 @@ void pop(void);              //deletes the memory-block.
 void erase_snake(void);      //erase the previous path of snake so as to animate it.
 void mov(void);              //creates a new path for snake so as snake should move.
 void print(void);            //prints the snake.
+short moved_position_of_head_x(short); //returns the moved 'x' coordinate of head.
+short moved_position_of_head_y(short); //returns the moved 'y' coordinate of head.
 };
 
 /*-----------------------------------------------------------------------------------------------------------------------*/
@@ -207,6 +209,57 @@ s.print();*/
        }
 /*-----------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------------------------------------------*/
+     short snake::moved_position_of_head_x(short d/*direction*/)
+     {
+      short res;
+      if(d == 0)
+      {
+       res = (head->x)+1;
+       if(res == x_end_bound)
+         res = x_start_bound + 1;
+       }
+
+
+      else if(d == 1)
+      {
+       res = (head->x)-1;
+       if(res == x_start_bound)
+         res = x_end_bound - 1;
+       }
+
+       else res = head->x;
+     return res;
+     }
+
+/*-----------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------*/
+     short snake::moved_position_of_head_y(short d/*direction*/)
+     {
+      short res;
+      if(d == 2)
+      {
+       res = (head->y)-1;
+       if(res == y_start_bound)
+         res = y_end_bound - 1;
+       }
+
+
+      else if(d == 3)
+      {
+       res = (head->y)+1;
+       if(res == y_end_bound)
+         res = y_start_bound + 1;
+       }
+
+      else res = head->y;
+     return res;
+     }
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------*/
+
       void snake::push(short d)
       {
        create_new_ptr();
@@ -216,30 +269,8 @@ s.print();*/
         return;
         }
 
-         if(d == 0)
-         {
-          temp->x = (head->x)+1;
-          temp->y = (head->y);
-          }
-
-         else if(d == 1)
-         {
-          temp->x = (head->x)-1;
-          temp->y = (head->y);
-          }
-
-         else if(d == 2)
-         {
-          temp->x = (head->x);
-          temp->y = (head->y)-1;
-          }
-
-         else if(d == 3)
-         {
-          temp->x = (head->x);
-          temp->y = (head->y)+1;
-          }
-
+       temp->x = moved_position_of_head_x(d);
+       temp->y = moved_position_of_head_y(d);
 
        temp->no_of_blocks = 1;
        temp->direction = d;
@@ -276,33 +307,8 @@ s.print();*/
 /*-----------------------------------------------------------------------------------------------------------------------*/
       void snake::mov(void)
       {
-       if(head->direction == 0)
-       {
-       (head->x) += 1;
-        if(head->x == x_end_bound)
-         head->x = (x_start_bound + 1);
-        }
-
-       else if(head->direction == 1)
-       {
-       (head->x) -= 1;
-        if(head->x == x_start_bound)
-         head->x = (x_end_bound - 1);
-        }
-
-       else if(head->direction == 2)
-       {
-       (head->y) -= 1;
-        if(head->y == y_start_bound)
-         head->y = (y_end_bound - 1);
-        }
-
-       else if(head->direction == 3)
-       {
-       (head->y) += 1;
-        if(head->y == y_end_bound)
-         head->y = (y_start_bound + 1);
-        }
+       head->x = moved_position_of_head_x(head->direction);
+       head->y = moved_position_of_head_y(head->direction);
 
        (head->no_of_blocks)++;
        (tail->no_of_blocks)--;
