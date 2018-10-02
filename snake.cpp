@@ -62,6 +62,16 @@ Direction:
 /*-----------------------------------------------------------------------------------------------------------------------*/
 
 //Boundaries of display window:
+/*
+if changing the default values, do make changes in set_window_size(), in system call:
+       -----------------------------
+        void set_window_size()
+        {
+         system("mode 81,26");
+       -----------------------------
+81 is x_end_bound + 1
+26 is y_end_bound + 1
+*/
 const short x_start_bound = 1;
 const short x_end_bound = 80;
 const short y_start_bound = 1;
@@ -111,7 +121,7 @@ class snake
          return false;
        }
 
-void create_new_ptr(void);   //create a new memory-block dynamically.
+void create_new_ptr(void);   //create a new memory-block dynamically and store the address in 'temp'.
 void push(short);            //push a memory-block to store info about new segment.
 void pop(void);              //deletes the memory-block.
 void erase_snake(void);      //erase the previous path of snake so as to animate it.
@@ -278,7 +288,7 @@ s.print();*/
        head = temp;
        temp = NULL;
        (tail->no_of_blocks)-=1;
-        if(tail->no_of_blocks == 0)
+       if(tail->no_of_blocks == 0)
          pop();
        }
 /*-----------------------------------------------------------------------------------------------------------------------*/
@@ -443,7 +453,7 @@ void gotoxy(int x, int y)
  void set_window_size()
  {
   system("mode 81,26");
-  SMALL_RECT WinRect = {0,0,81,26};
+  SMALL_RECT WinRect = {x_start_bound-1,y_start_bound-1,x_end_bound+1,y_end_bound+1};
   SMALL_RECT* WinSize =&WinRect;
   SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE),true, WinSize);
   }
