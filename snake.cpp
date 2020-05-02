@@ -10,19 +10,20 @@ unsigned int speed = 100;
 void create_border(void);
 /* ------------------------------------------------------------------------- */
 
+/* Handle the program if it is terminated using kill(), pkill() or 'ctrl+C' */
 void sigterm_handler(int signum){
-  echo();
-  delwin(win);
-  endwin();
+  echo();          //enable ncurses echo
+  delwin(win);     //delete window created for game
+  endwin();        //end intitial window
   printf("\n\nSIGTERM Called\n");
   printf("\n\nI died gracefully\n");
   exit(signum);
 }
 
 void sigabrt_handler(int signum){
-  echo();
-  delwin(win);
-  endwin();
+  echo();          //enable ncurses echo
+  delwin(win);     //delete window created for game
+  endwin();        //end initial window
   printf("\n\nSIGABRT Called\n");
   printf("\n\nI died gracefully\n");
   exit(signum);
@@ -48,7 +49,8 @@ int main(){
 
   /*Initialize screen*/
   win = initscr();
-  noecho();
+
+  noecho(); //do not echo during ncurses getch()
   if(win == NULL){
     fprintf(stderr,"\nError - initscr(): %d\n", ERR);
     echo();
@@ -56,7 +58,7 @@ int main(){
     return 0;
   }
 
-  refresh();
+  refresh(); //render the initial screen
 
   /*Make new Window*/
   win = newwin(ROW_WIN, COL_WIN, START_X, START_Y);
@@ -75,15 +77,25 @@ int main(){
   /*   THE GAME    */
 
   snake s;
+
+  /* Do not wait during getch() if user does not give any input */
   nodelay(stdscr, TRUE);
+
+  /* Detect UP, DOWN, LEFt, RIGHT arrow keys */
   keypad(stdscr, TRUE);
+
   cbreak();
+
+  /* Make the cursor invisible */
   curs_set(0);
 
   for(; ;){
   input = false;
+
+  /* Print the snake */
   s.print();
   wrefresh(win);
+
     for(i=0; i<speed && input==false; i+=10){
       usleep(10000);
       ch=0;
@@ -111,7 +123,7 @@ int main(){
       break;
 
     if(input == false)
-        s.mov();
+      s.mov();
 
     input = false;
     s.erase_snake();
@@ -120,7 +132,7 @@ int main(){
 
   /* ------------------------------------*/
 
-  
+  /* Get things back to normal */
   nodelay(stdscr, FALSE);
   keypad(stdscr, FALSE);
   curs_set(1);
