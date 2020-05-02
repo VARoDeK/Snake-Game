@@ -5,11 +5,12 @@ OBJ = snake.o class_snake.o
 
 # Default goal
 snake: $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^	
+	$(CXX) $(CXXFLAGS) -o $@ $^
+	rm *.o
 
 # Header dependencies
 $(OBJ): $(DEPS)
 
 .PHONY: clean
 clean :
-	rm *.o snake
+	rm snake

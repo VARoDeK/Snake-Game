@@ -1,16 +1,18 @@
+#include <ncurses.h>
+
 /* Header file for Snake Program */
 #ifndef __SNAKE_H__ /* SNAKE_H */
 
 #define __SNAKE_H__
 
 /* ------------------------------------------------------------------------- */
-#define ROW_WIN 40        //max height of window
-#define COL_WIN 80        //max width of window
+#define ROW_WIN 41        //max height of window
+#define COL_WIN 81        //max width of window
 
-#define MAX_ROW ROW_WIN-1  //max distance (height) snake can go
+#define MAX_ROW ROW_WIN-2  //max distance (height) snake can go
 #define MIN_ROW 1          //min distance (height) snake can go
-#define MAX_COL COL_WIN-1  //max distance (width) snake can go
-#define MIN_COl 1          //min distance (width) snake can go
+#define MAX_COL COL_WIN-2  //max distance (width) snake can go
+#define MIN_COL 1          //min distance (width) snake can go
 
 #define START_X 0
 #define START_Y 0
@@ -59,6 +61,8 @@ Direction:
 class snake{
   private:
     body *head, *tail, *temp;
+    const char hd = 'H';
+    const char bod = '0';
 //head- head segment of snake.
 //tail- tail segment of snake.
 /*
@@ -70,15 +74,16 @@ class snake{
  //to erase the previous path of snake, so as to animate it.
 
   public:
-    snake();
+    snake(void);
     void create_new_ptr(void);   //create a new memory-block dynamically and store the address in 'temp'.
-    void push(short);            //push a memory-block to store info about new segment.
+    void push(unsigned short);            //push a memory-block to store info about new segment.
     void pop(void);              //deletes the memory-block.
     void erase_snake(void);      //erase the previous path of snake so as to animate it.
     void mov(void);              //creates a new path for snake so as snake should move.
     void print(void);            //prints the snake.
-    short moved_position_of_head_x(short); //returns the moved 'x' coordinate of head.
-    short moved_position_of_head_y(short); //returns the moved 'y' coordinate of head.
+    unsigned short moved_position_of_head_x(unsigned short); //returns the moved 'x' coordinate of head.
+    unsigned short moved_position_of_head_y(unsigned short); //returns the moved 'y' coordinate of head.
+    bool check_head_direction(unsigned short);
 };
 
 #endif /* SNAKE_H */

@@ -27,7 +27,8 @@ Purely implemented using STL and Linked Lists.
 
 1) Clone the Repository
 2) Switch to `master` branch
-3) Run `make` .
+3) To build the project, enter `make` .
 4) Run `./snake` .
+5) To remove the program compiled in step 3, enter `make clean`.
 
 ---
