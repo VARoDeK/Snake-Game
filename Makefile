@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -std=c++17 -lncurses
 DEPS = snake.h
-OBJ = functions.o class_snake.o main.o
+OBJ = functions.o class_snake.o menu.o main.o
 
 # Default goal
 snake: $(OBJ)

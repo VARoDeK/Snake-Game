@@ -12,6 +12,7 @@ unsigned int speed = 100;
 /* Handle the program if it is terminated using kill(), pkill() or 'ctrl+C' */
 void sigterm_handler(int signum){
   echo();          //enable ncurses echo
+  curs_set(1);
   delwin(win);     //delete window created for game
   endwin();        //end intitial window
   printf("\n\nSIGTERM Called\n");
@@ -21,6 +22,7 @@ void sigterm_handler(int signum){
 
 void sigabrt_handler(int signum){
   echo();          //enable ncurses echo
+  curs_set(1);
   delwin(win);     //delete window created for game
   endwin();        //end initial window
   printf("\n\nSIGABRT Called\n");
@@ -44,12 +46,15 @@ int main(){
   printf("REGISTERED SIGTERM HANDLER\n");
 
   printf("Press any key..");
+  usleep(500000);
   getch();
+
 
   /*Initialize screen*/
   win = initscr();
-
+  
   noecho(); //do not echo during ncurses getch()
+
   if(win == NULL){
     fprintf(stderr,"\nError - initscr(): %d\n", ERR);
     echo();
@@ -70,7 +75,11 @@ int main(){
 
   create_border();
   wrefresh(win);
+  
+  /* Make the cursor invisible */
+  curs_set(0);
 
+  start_menu();
 
   /* ---------------------------------- */
   /*   THE GAME    */
@@ -84,9 +93,6 @@ int main(){
   keypad(stdscr, TRUE);
 
   cbreak();
-
-  /* Make the cursor invisible */
-  curs_set(0);
 
   for(; ;){
   input = false;
@@ -103,7 +109,8 @@ int main(){
          ch != KEY_DOWN &&
          ch != KEY_LEFT &&
          ch != KEY_RIGHT &&
-         ch != 27)
+         ch != 27 &&
+         ch != 32)
       continue;
 
       input = true;
@@ -115,11 +122,11 @@ int main(){
         s.push(2);
       else if(ch == KEY_DOWN && !s.check_head_direction(3) && !s.check_head_direction(2))
         s.push(3);
-      else if(ch == 27);
+      else if(ch == 32)
+        pause_menu();
+      else if(ch == 27)
+        exit_menu();
     }
-
-    if(input == true && ch == 27)
-      break;
 
     if(input == false)
       s.mov();

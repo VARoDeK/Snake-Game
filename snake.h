@@ -25,6 +25,9 @@
 extern WINDOW *win;
 
 void create_border(void);
+void start_menu(void);
+void pause_menu(void);
+void exit_menu(void);
 /* ------------------------------------------------------------------------- */
 /*
 The snake body will be divided in different segments:
