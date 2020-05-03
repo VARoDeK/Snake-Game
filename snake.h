@@ -6,17 +6,25 @@
 #define __SNAKE_H__
 
 /* ------------------------------------------------------------------------- */
-#define ROW_WIN 41        //max height of window
-#define COL_WIN 81        //max width of window
+#define ROW_WIN 40        //max number of lines in a window
+#define COL_WIN 80        //max number of characters in a window
 
-#define MAX_ROW ROW_WIN-2  //max distance (height) snake can go
-#define MIN_ROW 1          //min distance (height) snake can go
-#define MAX_COL COL_WIN-2  //max distance (width) snake can go
-#define MIN_COL 1          //min distance (width) snake can go
+#define MAX_ROW ROW_WIN-2  //max line no snake can go
+#define MIN_ROW 1          //min line no snake can go
+#define MAX_COL COL_WIN-2  //max character position snake can go
+#define MIN_COL 1          //min character position snake can go
 
 #define START_X 0
 #define START_Y 0
 
+/* 
+ * All the program files will be needing the variable 'win'. Using 'extern'
+ * keyword we make sure that 'win' is just declared and not defined/
+ * initialized. The definition is done in 'main.cpp' 
+ */
+extern WINDOW *win;
+
+void create_border(void);
 /* ------------------------------------------------------------------------- */
 /*
 The snake body will be divided in different segments:

@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <ncurses.h>
 
-extern WINDOW *win;
-
+/* Constructor */
+/* Giving initial values to render a snake */
 snake::snake(void){
   this->create_new_ptr();
   this->head = tail = temp;
@@ -16,6 +16,7 @@ snake::snake(void){
 
 /* ------------------------------------------------------------------------- */
 
+/* Creates a new segment at run time */
 void snake::create_new_ptr(void){
   this->temp = NULL;
   this->temp = new body;
@@ -37,6 +38,7 @@ void snake::create_new_ptr(void){
 
 /* ------------------------------------------------------------------------- */
 
+/* Determines the next x coordinate of head on the basis of direction */
 unsigned short snake::moved_position_of_head_x(unsigned short d/*direction*/){
   unsigned short res;
   if(d == 0){
@@ -57,6 +59,7 @@ unsigned short snake::moved_position_of_head_x(unsigned short d/*direction*/){
 
 /* ------------------------------------------------------------------------- */
 
+/* Determines the next y coordinate of head on the basis of direction */
 unsigned short snake::moved_position_of_head_y(unsigned short d/*direction*/){
   unsigned short res;
   if(d == 2){
@@ -76,6 +79,8 @@ unsigned short snake::moved_position_of_head_y(unsigned short d/*direction*/){
 }
 
 /* ------------------------------------------------------------------------- */
+
+/* Add a new segement to snake body */
 void snake::push(unsigned short d){
   this->create_new_ptr();
   this->temp->x = moved_position_of_head_x(d);
@@ -90,8 +95,10 @@ void snake::push(unsigned short d){
   if(this->tail->no_of_blocks == 0)
     this->pop();
 }
+
 /* ------------------------------------------------------------------------- */
 
+/* Delete a segment from snake body */
 void snake::pop(void){
   if(this->tail == NULL){
     //error("underflow");
@@ -106,6 +113,17 @@ void snake::pop(void){
 
 /* ------------------------------------------------------------------------- */
 
+/* erase the last step of snake, for animation */
+/*
+t=0ms   :  0000000H
+t=100ms :   0000000H
+t=200ms :    0000000H
+
+In this case of snake moving from left to right,
+As we see to make the snake look like moving forward, we print whole segment
+at increased postion and the last '0' is replaced by white space.
+
+*/
 void snake::erase_snake(void){
   mvwprintw(win, this->erase_y , this->erase_x, " ");
 }

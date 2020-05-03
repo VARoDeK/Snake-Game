@@ -32,3 +32,29 @@ Purely implemented using STL and Linked Lists.
 5) To remove the program compiled in step 3, enter `make clean`.
 
 ---
+
+# Project Tree
+
+1) `snake.h` - Contains all the function and variables declaration which are used by all the files. It also contains:
+    * `struct body` - The body segment of snake.
+    * `class snake` - A whole single snake.
+  
+2) `class_snake.cpp` - Contains definitions of functions of `class snake`.
+
+3) `functions.cpp` - Contains definitions of functions used in `main.cpp`. Those functions are either declared in `main.cpp` or `snake.h`.
+
+4) `main.cpp` - The actual logic of forming window, signal handling, printing, etc, is written here.
+
+---
+
+# How snake works?
+
+The division of snake body into segments is explained in `snake.h`.
+
+Now let's assume __b<sub>n</sub>__ means __n<sup>th</sup>__ body segment. Then linked list of snake, with 2 body segments, looks like:
+
+__tail ----> b<sub>2</sub> ----> b<sub>1</sub> ----> head__ 
+
+The printing starts from tail.
+
+---
