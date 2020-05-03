@@ -1,6 +1,9 @@
 #include "snake.h"
 #include <stdlib.h>
+#include <ctime>
+#include <csignal>
 #include <ncurses.h>
+#include <unistd.h>
 
 /* Constructor */
 /* Giving initial values to render a snake */
@@ -12,6 +15,9 @@ snake::snake(void){
   this->head->direction = 0;
   this->head->no_of_blocks = 10;
   this->head->next = NULL;
+  this->food_x = 4;
+  this->food_y = 4;
+  this->food_eat = true;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -151,6 +157,7 @@ void snake::print(void){
   unsigned short i,j;
 
   mvwprintw(win, this->head->y , this->head->x, "%c", hd);
+
   travel = this->tail;
 
   while(travel != NULL){
@@ -208,9 +215,37 @@ void snake::print(void){
 
     travel = travel->next;
   }
+
+  this->erase_snake();
+
+  if(this->food_eat == true){
+    generate_food();
+    food_eat = false;
+  }
+
+  mvwprintw(win, this->food_y, this->food_x, "%c", fod);
+
+  if(mvwinch(win, this->head->y, this->head->x) == BOD){
+    mvwprintw(win, 18, 32, "                ");
+    mvwprintw(win, 19, 32, " YOU GOT KILLED ");
+    mvwprintw(win, 20, 32, "                ");
+    wrefresh(win);
+    sleep(2);
+    raise(SIGTERM);
+  }
+
+  if(this->food_x == this->head->x && this->food_y == this->head->y){
+    this->head->x = moved_position_of_head_x(this->head->direction);
+    this->head->y = moved_position_of_head_y(this->head->direction);
+
+    (this->head->no_of_blocks)++;
+    this->food_eat = true;
+  }
+
 }
 
 /* ------------------------------------------------------------------------- */
+
 bool snake::check_head_direction(unsigned short d){
           /*as body->direction tells about the direction of movement of a particular segment,
             we can check the movement of the head of the snake.*/
@@ -220,4 +255,22 @@ bool snake::check_head_direction(unsigned short d){
   else
     return false;
        }
+
+/* ------------------------------------------------------------------------- */
+
+void snake::generate_food(void){
+  srand(time(NULL));
+  while(true){
+    this->food_x = ( rand()%(MAX_COL - MIN_COL + 1) ) + MIN_COL;
+    this->food_y = ( rand()%(MAX_ROW - MIN_ROW + 1) ) + MIN_ROW;
+
+    if(this->food_x == this->erase_x && this->food_y == this->erase_y)
+      continue;
+
+    if(mvwinch(win, this->food_y, this->food_x) != HD &&
+       mvwinch(win, this->food_y, this->food_x) != BOD)
+      break;
+  }
+}
+
 /* ------------------------------------------------------------------------- */

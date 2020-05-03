@@ -131,9 +131,6 @@ int main(){
     if(input == false)
       s.mov();
 
-    input = false;
-    s.erase_snake();
-    
   }
 
   /* ------------------------------------*/

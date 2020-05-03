@@ -16,7 +16,8 @@
 
 #define START_X 0
 #define START_Y 0
-
+#define HD 'H'
+#define BOD 'o'
 /* 
  * All the program files will be needing the variable 'win'. Using 'extern'
  * keyword we make sure that 'win' is just declared and not defined/
@@ -72,8 +73,9 @@ Direction:
 class snake{
   private:
     body *head, *tail, *temp;
-    const char hd = 'H';
-    const char bod = '0';
+    const char hd = HD;
+    const char bod = BOD;
+    const char fod = '*';
 //head- head segment of snake.
 //tail- tail segment of snake.
 /*
@@ -82,6 +84,8 @@ class snake{
  */
 
   unsigned short erase_x, erase_y;
+  unsigned short food_x, food_y;
+  bool food_eat;
  //to erase the previous path of snake, so as to animate it.
 
   public:
@@ -95,6 +99,7 @@ class snake{
     unsigned short moved_position_of_head_x(unsigned short); //returns the moved 'x' coordinate of head.
     unsigned short moved_position_of_head_y(unsigned short); //returns the moved 'y' coordinate of head.
     bool check_head_direction(unsigned short);
+    void generate_food(void);
 };
 
 #endif /* SNAKE_H */
