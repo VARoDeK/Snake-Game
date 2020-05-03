@@ -73,7 +73,7 @@ class snake{
   private:
     body *head, *tail, *temp;
     const char hd = 'H';
-    const char bod = '0';
+    const char bod = 'o';
 //head- head segment of snake.
 //tail- tail segment of snake.
 /*
