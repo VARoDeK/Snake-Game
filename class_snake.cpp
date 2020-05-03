@@ -5,6 +5,8 @@
 #include <ncurses.h>
 #include <unistd.h>
 
+extern unsigned int speed;
+
 /* Constructor */
 /* Giving initial values to render a snake */
 snake::snake(void){
@@ -18,6 +20,13 @@ snake::snake(void){
   this->food_x = 4;
   this->food_y = 4;
   this->food_eat = true;
+  this->score = 0;
+  if(speed == 100)
+    this->score_add = 2;
+  else if(speed == 75)
+    this->score_add = 5;
+  else if(speed == 50)
+    this->score_add = 10;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -221,6 +230,8 @@ void snake::print(void){
   if(this->food_eat == true){
     generate_food();
     food_eat = false;
+    mvwprintw(win, MAX_ROW+1, 30, "                  ");
+    mvwprintw(win, MAX_ROW+1, 30, " SCORE : %lu ", this->score);
   }
 
   mvwprintw(win, this->food_y, this->food_x, "%c", fod);
@@ -240,6 +251,7 @@ void snake::print(void){
 
     (this->head->no_of_blocks)++;
     this->food_eat = true;
+    this->score = this->score + this->score_add;
   }
 
 }

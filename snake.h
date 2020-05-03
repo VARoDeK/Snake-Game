@@ -86,6 +86,8 @@ class snake{
   unsigned short erase_x, erase_y;
   unsigned short food_x, food_y;
   bool food_eat;
+  unsigned long score;
+  unsigned long score_add;
  //to erase the previous path of snake, so as to animate it.
 
   public:
