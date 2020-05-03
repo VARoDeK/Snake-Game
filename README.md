@@ -15,6 +15,13 @@ Purely implemented using STL and Linked Lists.
 
 ---
 
+# Successfully builds on:
+
+[x] Arch Linux
+[x] MacOS
+
+---
+
 # How to run project?
 
 1) Clone the Repository
@@ -47,6 +54,6 @@ Now let's assume __b<sub>n</sub>__ means __n<sup>th</sup>__ body segment. Then l
 
 __tail ----> b<sub>2</sub> ----> b<sub>1</sub> ----> head__ 
 
-The printing starts from tail.
+The printing starts from tail and a new body segment is pushed from head side.
 
 ---
