@@ -25,8 +25,9 @@ void start_menu(void){
   mvwprintw(win, 18, 28, "Press Esc to Exit");
 
   mvwprintw(win, 31, 4, "INSTRSUCTIONS:");
-  mvwprintw(win, 32, 4, "1) - Press SPACE key during game to pause.");
-  mvwprintw(win, 33, 4, "1) - Press Esc key during game to exit.");
+  mvwprintw(win, 32, 4, "1) - Use arrow keys to move snake.");
+  mvwprintw(win, 33, 4, "2) - Press SPACE key during game to pause.");
+  mvwprintw(win, 34, 4, "3) - Press Esc key during game to exit.");
 
   wrefresh(win);
 

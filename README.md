@@ -15,14 +15,6 @@ Purely implemented using STL and Linked Lists.
 
 ---
 
-# Collaborators / Direct Contributors
-1) [Shikhar Kataruka](https://github.com/shikhar9820)
-2) [Shivam Khurana](https://github.com/SeeBoom)
-3) [Shreya Sneha](https://github.com/shreyasneha29)
-4) [Vaibhav Gupta](https://github.com/VARoDeK)
-
----
-
 # How to run project?
 
 1) Clone the Repository
