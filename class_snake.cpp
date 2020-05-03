@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <ncurses.h>
 
-extern WINDOW *win;
-
 /* Constructor */
 /* Giving initial values to render a snake */
 snake::snake(void){

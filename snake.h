@@ -17,6 +17,14 @@
 #define START_X 0
 #define START_Y 0
 
+/* 
+ * All the program files will be needing the variable 'win'. Using 'extern'
+ * keyword we make sure that 'win' is just declared and not defined/
+ * initialized. The definition is done in 'main.cpp' 
+ */
+extern WINDOW *win;
+
+void create_border(void);
 /* ------------------------------------------------------------------------- */
 /*
 The snake body will be divided in different segments:
