@@ -1,7 +1,7 @@
 #include "snake.h"
 #include <csignal>
 #include <stdlib.h>
-#include <curses.h>
+#include <ncurses.h>
 #include <unistd.h>
 
 WINDOW *win = NULL;
