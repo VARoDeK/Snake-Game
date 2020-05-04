@@ -6,7 +6,7 @@
 #define __SNAKE_H__
 
 /* ------------------------------------------------------------------------- */
-#define ROW_WIN 40        //max number of lines in a window
+#define ROW_WIN 25        //max number of lines in a window
 #define COL_WIN 80        //max number of characters in a window
 
 #define MAX_ROW ROW_WIN-2  //max line no snake can go
