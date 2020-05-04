@@ -14,20 +14,20 @@ void start_menu(void){
   wrefresh(win);
   nodelay(stdscr, FALSE);
   noecho();
-  mvwprintw(win, 5, 30, "WELCOME TO SNAKE!!");
-  mvwprintw(win, 8, 3, "A re-implementation of 1976 arcade game Blockade "
+  mvwprintw(win, 3, 30, "WELCOME TO SNAKE!!");
+  mvwprintw(win, 5, 3, "A re-implementation of 1976 arcade game Blockade "
                        "using only Linked Lists.");
-  mvwprintw(win, 9, 10, "Follow the project : https://github.com/VARoDeK/Snake-Game");
-  mvwprintw(win, 14, 20, "Please select snake speed.");
-  mvwprintw(win, 15, 28, "Press 1 for Slow.");
-  mvwprintw(win, 16, 28, "Press 2 for Medium.");
-  mvwprintw(win, 17, 28, "Press 3 for Fast");
-  mvwprintw(win, 18, 28, "Press Esc to Exit");
+  mvwprintw(win, 6, 10, "Follow the project : https://github.com/VARoDeK/Snake-Game");
+  mvwprintw(win, 10, 20, "Please select snake speed.");
+  mvwprintw(win, 11, 28, "Press 1 for Slow.");
+  mvwprintw(win, 12, 28, "Press 2 for Medium.");
+  mvwprintw(win, 13, 28, "Press 3 for Fast");
+  mvwprintw(win, 14, 28, "Press Esc to Exit");
 
-  mvwprintw(win, 31, 4, "INSTRSUCTIONS:");
-  mvwprintw(win, 32, 4, "1) - Use arrow keys to move snake.");
-  mvwprintw(win, 33, 4, "2) - Press SPACE key during game to pause.");
-  mvwprintw(win, 34, 4, "3) - Press Esc key during game to exit.");
+  mvwprintw(win, 19, 4, "INSTRSUCTIONS:");
+  mvwprintw(win, 20, 4, "1) - Use arrow keys to move snake.");
+  mvwprintw(win, 21, 4, "2) - Press SPACE key during game to pause.");
+  mvwprintw(win, 22, 4, "3) - Press Esc key during game to exit.");
 
   wrefresh(win);
 
@@ -44,7 +44,7 @@ void start_menu(void){
     else if(ch == 27)
       raise(SIGTERM);
     else{
-      mvwprintw(win, 21, 12, "Please select correct Option.");
+      mvwprintw(win, 16, 25, "PLEASE SELECT CORRECT OPTION.");
       wrefresh(win);
       ch = 0;
       continue;
@@ -65,10 +65,10 @@ void pause_menu(void){
   
   nodelay(stdscr, FALSE);
 
-  mvwprintw(win, 18, 28, "                       ");
-  mvwprintw(win, 19, 33, " GAME PAUSED ");
-  mvwprintw(win, 20, 28, " PRESS SPACE TO RESUME ");
-  mvwprintw(win, 21, 28, "                       ");
+  mvwprintw(win, 10, 28, "                       ");
+  mvwprintw(win, 11, 33, " GAME PAUSED ");
+  mvwprintw(win, 12, 28, " PRESS SPACE TO RESUME ");
+  mvwprintw(win, 13, 28, "                       ");
   wrefresh(win);
  
   ch=0;
@@ -93,11 +93,11 @@ void exit_menu(void){
   
   nodelay(stdscr, FALSE);
 
-  mvwprintw(win, 18, 28, "                       ");
-  mvwprintw(win, 19, 30, " YOU WANT TO EXIT? ");
-  mvwprintw(win, 20, 29, " PRESS ESC TO RESUME ");
-  mvwprintw(win, 21, 31, " PRESS Q TO quit ");
-  mvwprintw(win, 22, 28, "                       ");
+  mvwprintw(win, 10, 28, "                       ");
+  mvwprintw(win, 11, 30, " YOU WANT TO EXIT? ");
+  mvwprintw(win, 12, 29, " PRESS ESC TO RESUME ");
+  mvwprintw(win, 13, 31, " PRESS Q TO quit ");
+  mvwprintw(win, 14, 28, "                       ");
   wrefresh(win);
  
   ch=0;

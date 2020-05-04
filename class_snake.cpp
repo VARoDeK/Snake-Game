@@ -230,10 +230,10 @@ void snake::print(void){
   if(this->food_eat == true){
     generate_food();
     food_eat = false;
-    mvwprintw(win, MAX_ROW+1, 30, "                  ");
-    mvwprintw(win, MAX_ROW+1, 30, " SCORE : %lu ", this->score);
   }
 
+  mvwprintw(win, MAX_ROW+1, 30, "                  ");
+  mvwprintw(win, MAX_ROW+1, 30, " SCORE : %lu ", this->score);
   mvwprintw(win, this->food_y, this->food_x, "%c", fod);
 
   if(mvwinch(win, this->head->y, this->head->x) == BOD){
