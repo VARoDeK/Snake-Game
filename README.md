@@ -24,6 +24,8 @@ Purely implemented using STL and Linked Lists.
 
 # How to run project?
 
+__Make sure that `ncurses` library is installed on your system.__
+
 1) Clone the Repository
 2) Switch to `master` branch
 3) To build the project, enter `make` .
