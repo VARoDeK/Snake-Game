@@ -1,12 +1,12 @@
 CXX = g++
 CXXFLAGS = -Wall -std=c++17
-NCURSES = -lncurses
+LDFLAGS = -lncurses
 DEPS = snake.h
 OBJ = functions.o class_snake.o menu.o main.o
 
 # Default goal
 snake: $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(NCURSES)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 	rm *.o
 
 # Header dependencies
