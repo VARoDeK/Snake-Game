@@ -7,7 +7,6 @@ OBJ = functions.o class_snake.o menu.o main.o
 # Default goal
 snake: $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
-	rm *.o
 
 # Header dependencies
 $(OBJ): $(DEPS)
