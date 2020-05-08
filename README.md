@@ -11,7 +11,9 @@
 
 # Implementation
 
-Purely implemented using STL and Linked Lists.
+Purely implemented using only and only __Linked Lists__.
+
+__No threading or forking used to implement multi-segment body.__
 
 ---
 
