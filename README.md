@@ -18,7 +18,9 @@ Purely implemented using STL and Linked Lists.
 # Successfully builds on:
 
 - [x] Arch Linux
+- [x] Ubuntu Linux
 - [x] MacOS
+- [x] WSL (Windows Subsystem for Linux)
 
 ---
 
