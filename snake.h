@@ -24,6 +24,7 @@
  * initialized. The definition is done in 'main.cpp' 
  */
 extern WINDOW *win;
+extern unsigned int speed;
 
 void create_border(void);
 void start_menu(void);

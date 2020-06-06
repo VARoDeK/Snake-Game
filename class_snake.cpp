@@ -5,8 +5,6 @@
 #include <ncurses.h>
 #include <unistd.h>
 
-extern unsigned int speed;
-
 /* Constructor */
 /* Giving initial values to render a snake */
 snake::snake(void){

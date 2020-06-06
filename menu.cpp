@@ -2,8 +2,6 @@
 #include <csignal>
 #include <ncurses.h>
 
-extern unsigned int speed;
-
 /* ------------------------------------------------------------------------- */
 
 void start_menu(void){
